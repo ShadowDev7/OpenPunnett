@@ -96,7 +96,7 @@ Phenotype:
 A: 75.00%
 a: 25.00%
 
-Ενώσεις: ['AA', 'Aa', 'Aa', 'aa']
+Combinations: ['AA', 'Aa', 'Aa', 'aa']
 ```
 
 ## Valid Inputs

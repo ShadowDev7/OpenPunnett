@@ -1,6 +1,4 @@
 import argparse
-
-
 def calculate(parent1: str, parent2: str):
     gametes1 = list(parent1)
     gametes2 = list(parent2)
@@ -48,7 +46,7 @@ def main():
     valid_combinations = ["aa", "Aa", "aA", "AA"]
 
     parser = argparse.ArgumentParser(
-        prog="Junction of sequences",
+        prog="Διασταύρωση Αλληλουχίων",
         description="Διασταύρωση Αλληλουχιών με τον πίνακα του Punnett"
     )
 
@@ -132,7 +130,7 @@ def main():
     if args.output:
         with open(args.output, "w", encoding="utf-8") as file:
             file.write(output_text)
-        print(f"\n[+] Το αποτέλεσμα γράφτηκε στο αρχείο: {args.output}")
+        print(f"\n[!] Το αποτέλεσμα γράφτηκε στο αρχείο: {args.output}")
 
 
 if __name__ == "__main__":

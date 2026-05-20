@@ -57,7 +57,7 @@ python main.py -p1 AA -p2 Aa
 | `--genotype` | Show only genotype results |
 | `--phenotype` | Show only phenotype results |
 | `--output <file>` | Save the result to a file |
-| `-h`, '--help' | Shows the commands (Well you can just read this file instead I do not know?)  |
+| `-h`, `--help` | Shows the commands (Well you can just read this file instead I do not know?)  |
 
 ## Examples
 

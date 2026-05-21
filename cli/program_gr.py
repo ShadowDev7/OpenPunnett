@@ -1,3 +1,5 @@
+# Credit to ShadowDev7 for the 
+
 import argparse
 def calculate(parent1: str, parent2: str):
     gametes1 = list(parent1)

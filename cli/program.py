@@ -1,3 +1,6 @@
+# Credit to ShadowDev7 for the original code, which was adapted and expanded upon for this project.
+# License: MIT License
+
 import argparse
 def calculate(parent1: str, parent2: str):
     gametes1 = parent1

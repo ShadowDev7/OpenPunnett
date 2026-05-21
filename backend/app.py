@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from program import calculate_punnett_square
+from cli.program import calculate_punnett_square
 app = Flask(__name__)
 
 @app.route('/')

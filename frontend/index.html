@@ -6,7 +6,7 @@
 <title>Punnett Pro</title>
 
 <style>
-body {
+  body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #1f1c2c, #928dab);
@@ -166,6 +166,8 @@ td, th {
 
 </div>
 
+
+<!-- SCRIPTS -->
 <script>
 
 let lang = "el";
@@ -181,15 +183,15 @@ const t = {
  }
 };
 
-function toggleLang(){
+function toggleLang() { // He was bored of json files so....
  const thumb = document.getElementById("thumb");
 
- if(lang==="el"){
+ if (lang === "el"){
    lang="en";
    thumb.style.transform="translateX(38px)";
    thumb.innerText="🇬🇧";
  } else {
-   lang="el";
+   lang = "el";
    thumb.style.transform="translateX(0)";
    thumb.innerText="🇬🇷";
  }
@@ -197,16 +199,15 @@ function toggleLang(){
  document.querySelector("h2").innerText = t[lang].title;
 }
 
-function combine(a,b){
+function combine(a,b) {
  return (a+b).split("").sort().join("");
 }
 
-function calculate(){
-
+function calculate() {
  const p1=document.getElementById("p1").value;
  const p2=document.getElementById("p2").value;
 
- if(!p1||!p2){
+ if (!p1 || !p2) {
    alert(t[lang].error);
    return;
  }
@@ -214,63 +215,64 @@ function calculate(){
  const g1=[...p1];
  const g2=[...p2];
 
- let counts={};
+ let counts = {};
 
  let html="<table><tr><th></th>";
 
- for(let j=0;j<g2.length;j++){
-  html+=`<th>${g2[j]}</th>`;
+ for (let j=0; j < g2.length; j++){
+    html+=`<th>${g2[j]}</th>`;
  }
+ 
  html+="</tr>";
 
- for(let i=0;i<g1.length;i++){
+ for (let i=0; i < g1.length; i++) {
   html+=`<tr><th>${g1[i]}</th>`;
-  for(let j=0;j<g2.length;j++){
-    let c=combine(g1[i],g2[j]);
+  
+  for (let j=0; j < g2.length; j++) {
+    let c=combine(g1[i], g2[j]);
     html+=`<td>${c}</td>`;
-    counts[c]=(counts[c]||0)+1;
+    counts[c]=(counts[c] || 0)+1;
   }
-  html+="</tr>";
+  html += "</tr>";
  }
 
- html+="</table>";
 
- let total=Object.values(counts).reduce((a,b)=>a+b,0);
+ html += "</table>";
 
- let bars="<div class='bar-container'>";
+ let total = Object.values(counts).reduce((a,b)=>a+b,0);
 
- for(let k in counts){
-   let percent=(counts[k]/total*100);
-   bars+=`
+ let bars= "<div class='bar-container'>";
+
+ for (let k in counts) {
+   let percent = (counts[k]/total*100);
+   bars += `
    <div>${k} - ${percent.toFixed(0)}%</div>
    <div class='bar' style='width:${percent*2}px'></div>
    `;
  }
 
- bars+="</div>";
+ bars += "</div>";
 
  document.getElementById("output").innerHTML = html + bars;
 
  saveHistory(p1,p2);
 }
 
-function saveHistory(p1,p2){
- let h = JSON.parse(localStorage.getItem("history")||"[]");
- h.unshift(`${p1} × ${p2}`);
+function saveHistory(p1,p2) {
+ let h = JSON.parse(localStorage.getItem("history") || "[]");
+ h.unshift(`${p1} * ${p2}`);
  h = h.slice(0,5);
  localStorage.setItem("history",JSON.stringify(h));
 
- document.getElementById("history").innerHTML =
- "<b>History:</b><br>"+h.join("<br>");
+ document.getElementById("history").innerHTML = "<b>History:</b><br>" + h.join("<br>");
 }
 
-window.onload=function(){
- document.querySelector("h2").innerText=t[lang].title;
+window.onload=function() {
+ document.querySelector("h2").innerText = t[lang].title;
 
- let h=JSON.parse(localStorage.getItem("history")||"[]");
- if(h.length){
-  document.getElementById("history").innerHTML =
-  "<b>History:</b><br>"+h.join("<br>");
+ let h=JSON.parse(localStorage.getItem("history") || "[]");
+ if (h.length) {
+  document.getElementById("history").innerHTML = "<b>History:</b><br>"+h.join("<br>");
  }
 }
 

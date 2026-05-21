@@ -13,7 +13,9 @@ A simple Python/JavaScript tool for calculating genotype and phenotype percentag
 ## Requirements 
 
 - Python 3.x (requirement, no less than that)
+
 OR
+
 - [A Web browser](https://shadowdev7.github.io/punnett-sqaure-calculator) 
 
 ## Installation (For CLI)
@@ -127,6 +129,6 @@ MIT
 
 ## Credits
 
-- [ShadowDev7](https://shadowdev7.github.io/punnett-sqaure-calculator) -> Made the Python CLI version 
+- [ShadowDev7](https://shadowdev7.github.io/punnett-sqaure-calculator) -> Made the Python CLI version and Desktop Application 
 
 - [Krikonis11](https://shadowdev7.github.io/punnett-sqaure-calculator) -> Made the Website

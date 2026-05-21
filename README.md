@@ -128,4 +128,5 @@ MIT
 ## Credits
 
 [ShadowDev7]("https://github.com/ShadowDev7") - Developer of the python CLI
+
 [Krikonis11]("https://github.com/Krikonis11") - Developeer of the website

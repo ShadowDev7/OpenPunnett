@@ -6,7 +6,7 @@
 <title>Punnett Pro</title>
 
 <style>
-  body {
+body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #1f1c2c, #928dab);
@@ -17,7 +17,6 @@
   min-height: 100vh;
 }
 
-/* CONTAINER */
 .container {
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(20px);
@@ -25,17 +24,10 @@
   border-radius: 25px;
   width: 92%;
   max-width: 750px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   text-align: center;
-  animation: fadeIn 0.8s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(20px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-/* INPUTS */
 input {
   padding: 12px;
   margin: 6px;
@@ -45,7 +37,6 @@ input {
   font-size: 16px;
 }
 
-/* BUTTON */
 button {
   margin-top: 10px;
   padding: 12px 22px;
@@ -61,12 +52,11 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* TABLE */
 table {
   margin: 20px auto;
   border-collapse: collapse;
-  overflow: hidden;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 td, th {
@@ -77,7 +67,6 @@ td, th {
   background: rgba(255,255,255,0.1);
 }
 
-/* RESULT BOX */
 .result {
   margin-top: 15px;
   padding: 15px;
@@ -85,7 +74,19 @@ td, th {
   border-radius: 15px;
 }
 
-/* LANGUAGE SWITCH */
+.bar-container {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.bar {
+  height: 18px;
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+/* LANG SWITCH */
 .lang-switch {
   width: 75px;
   height: 36px;
@@ -106,29 +107,7 @@ td, th {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.35s cubic-bezier(.68,-0.55,.27,1.55);
-  transform: translateX(0);
-}
-
-/* CHART */
-.bar-container {
-  margin-top: 10px;
-  text-align: left;
-}
-
-.bar {
-  height: 20px;
-  background: linear-gradient(90deg,#00c6ff,#0072ff);
-  border-radius: 10px;
-  margin: 5px 0;
-  transition: 0.5s;
-}
-
-/* HISTORY */
-.history {
-  margin-top: 15px;
-  font-size: 13px;
-  opacity: 0.85;
+  transition: 0.35s;
 }
 
 /* FOOTER */
@@ -144,137 +123,241 @@ td, th {
 
 <div class="container">
 
-<h2>🧬 Punnett Pro</h2>
+  <div style="text-align:center;">
+    <img src="Logo.png" style="width: 400px; margin-bottom:10px;">
+    <h2 id="title"></h2>
+  </div>
 
-<input id="p1" placeholder="Parent 1">
-<input id="p2" placeholder="Parent 2">
+<input id="p1" placeholder="">
+<input id="p2" placeholder="">
 <br>
 
-<button onclick="calculate()">Calculate</button>
+<button onclick="calculate()" id="btn1"></button>
+<button onclick="explain()" id="btn2"></button>
+<button onclick="exportData()" id="btn3"></button>
 
 <div id="output"></div>
+<div id="ai"></div>
 
-<!-- LANG SWITCH -->
+<!-- LANG -->
 <div class="lang-switch" onclick="toggleLang()">
   <div class="thumb" id="thumb">🇬🇷</div>
 </div>
 
-<!-- HISTORY -->
-<div class="history" id="history"></div>
+<div id="history"></div>
 
 <div class="footer">Site Made By Nikolas Krikonis</div>
 
 </div>
 
-
-<!-- SCRIPTS -->
 <script>
 
 let lang = "el";
 
+/* 🌍 TEXTS */
 const t = {
  el: {
-  title:"🧬 Υπολογιστής Punnett",
-  error:"Λάθος γονότυπος"
+  title:"",                                                          
+  p1:"Γονέας 1 (π.χ. Aa / Αα)",
+  p2:"Γονέας 2 (π.χ. Aa / Αα)",
+  calc:"Υπολογισμός",
+  explain:"Εξήγηση",
+  export:"Export",
+  error:"Λάθος γονότυπος",
+  validError:"Πρέπει να είναι AA, Aa, aA, aa (ή ελληνικά Α/α)",
+  results:"Αποτελέσματα",
+  ai:"🧠 Εξήγηση"
  },
  en: {
-  title:"🧬 Punnett Calculator",
-  error:"Invalid genotype"
+  title:"",
+  p1:"Parent 1 (e.g. Aa)",
+  p2:"Parent 2 (e.g. Aa)",
+  calc:"Calculate",
+  explain:"Explain",
+  export:"Export",
+  error:"Invalid genotype",
+  validError:"Must be AA, Aa, aA, aa (or Greek Α/α)",
+  results:"Results",
+  ai:"🧠 Explanation"
  }
 };
 
-function toggleLang() { // He was bored of json files so....
+/* 🔄 normalize Greek letters */
+function normalizeGenotype(g){
+  return g
+    .replace(/Α/g, "A")
+    .replace(/α/g, "a");
+}
+
+/* 🌍 apply language */
+function applyLang(){
+ document.getElementById("title").innerText = t[lang].title;
+ document.getElementById("p1").placeholder = t[lang].p1;
+ document.getElementById("p2").placeholder = t[lang].p2;
+ document.getElementById("btn1").innerText = t[lang].calc;
+ document.getElementById("btn2").innerText = t[lang].explain;
+ document.getElementById("btn3").innerText = t[lang].export;
+
+ document.getElementById("output").innerHTML="";
+ document.getElementById("ai").innerHTML="";
+}
+
+/* 🌍 switch */
+function toggleLang(){
  const thumb = document.getElementById("thumb");
 
- if (lang === "el"){
+ if(lang==="el"){
    lang="en";
    thumb.style.transform="translateX(38px)";
    thumb.innerText="🇬🇧";
  } else {
-   lang = "el";
+   lang="el";
    thumb.style.transform="translateX(0)";
    thumb.innerText="🇬🇷";
  }
 
- document.querySelector("h2").innerText = t[lang].title;
+ applyLang();
 }
 
-function combine(a,b) {
+/* 🧬 combine */
+function combine(a,b){
  return (a+b).split("").sort().join("");
 }
 
-function calculate() {
- const p1=document.getElementById("p1").value;
- const p2=document.getElementById("p2").value;
+/* 🧪 calculate */
+function calculate(){
 
- if (!p1 || !p2) {
-   alert(t[lang].error);
+ let p1 = document.getElementById("p1").value.trim();
+ let p2 = document.getElementById("p2").value.trim();
+
+ /* 🔥 convert Greek → Latin */
+ p1 = normalizeGenotype(p1);
+ p2 = normalizeGenotype(p2);
+
+ const valid = ["AA","Aa","aA","aa"];
+
+ if(!valid.includes(p1) || !valid.includes(p2)){
+   alert(t[lang].validError);
    return;
  }
 
  const g1=[...p1];
  const g2=[...p2];
 
- let counts = {};
-
+ let counts={};
  let html="<table><tr><th></th>";
 
- for (let j=0; j < g2.length; j++){
-    html+=`<th>${g2[j]}</th>`;
+ for(let j=0;j<g2.length;j++){
+  html+=`<th>${g2[j]}</th>`;
  }
- 
  html+="</tr>";
 
- for (let i=0; i < g1.length; i++) {
+ for(let i=0;i<g1.length;i++){
   html+=`<tr><th>${g1[i]}</th>`;
-  
-  for (let j=0; j < g2.length; j++) {
-    let c=combine(g1[i], g2[j]);
+  for(let j=0;j<g2.length;j++){
+    let c=combine(g1[i],g2[j]);
     html+=`<td>${c}</td>`;
-    counts[c]=(counts[c] || 0)+1;
+    counts[c]=(counts[c]||0)+1;
   }
-  html += "</tr>";
+  html+="</tr>";
  }
 
+ html+="</table>";
 
- html += "</table>";
+ let total=Object.values(counts).reduce((a,b)=>a+b,0);
 
- let total = Object.values(counts).reduce((a,b)=>a+b,0);
+ let bars="<div class='bar-container'>";
 
- let bars= "<div class='bar-container'>";
-
- for (let k in counts) {
-   let percent = (counts[k]/total*100);
-   bars += `
-   <div>${k} - ${percent.toFixed(0)}%</div>
-   <div class='bar' style='width:${percent*2}px'></div>
-   `;
+ for(let k in counts){
+   let p=(counts[k]/total*100);
+   bars+=`<div>${k} - ${p.toFixed(0)}%</div>`;
+   bars+=`<div class='bar' style='width:${p*3}px'></div>`;
  }
 
- bars += "</div>";
+ bars+="</div>";
 
- document.getElementById("output").innerHTML = html + bars;
+ document.getElementById("output").innerHTML =
+ `<div class='result'><h3>${t[lang].results}</h3></div>` + html + bars;
 
  saveHistory(p1,p2);
 }
 
-function saveHistory(p1,p2) {
- let h = JSON.parse(localStorage.getItem("history") || "[]");
- h.unshift(`${p1} * ${p2}`);
- h = h.slice(0,5);
- localStorage.setItem("history",JSON.stringify(h));
+/* 🧠 explain */
+function explain(){
 
- document.getElementById("history").innerHTML = "<b>History:</b><br>" + h.join("<br>");
-}
+ let p1 = document.getElementById("p1").value.trim();
+ let p2 = document.getElementById("p2").value.trim();
 
-window.onload=function() {
- document.querySelector("h2").innerText = t[lang].title;
+ p1 = normalizeGenotype(p1);
+ p2 = normalizeGenotype(p2);
 
- let h=JSON.parse(localStorage.getItem("history") || "[]");
- if (h.length) {
-  document.getElementById("history").innerHTML = "<b>History:</b><br>"+h.join("<br>");
+ const valid = ["AA","Aa","aA","aa"];
+
+ if(!valid.includes(p1) || !valid.includes(p2)){
+   alert(t[lang].validError);
+   return;
  }
+
+ let meaning = {
+  AA: lang==="el"?"ομόζυγος κυρίαρχος":"homozygous dominant",
+  Aa: lang==="el"?"ετερόζυγος":"heterozygous",
+  aA: lang==="el"?"ετερόζυγος":"heterozygous",
+  aa: lang==="el"?"ομόζυγος υπολειπόμενος":"homozygous recessive"
+ };
+
+ document.getElementById("ai").innerHTML =
+ `<div class="result">
+   <h3>${t[lang].ai}</h3>
+   <p>${p1}: ${meaning[p1]}</p>
+   <p>${p2}: ${meaning[p2]}</p>
+ </div>`;
 }
+
+/* 📦 export */
+function exportData(){
+
+ const p1 = normalizeGenotype(document.getElementById("p1").value);
+ const p2 = normalizeGenotype(document.getElementById("p2").value);
+
+ const output = document.getElementById("output").innerText;
+ const ai = document.getElementById("ai").innerText;
+
+ let content =
+ `Punnett Pro Export
+-------------------
+Parent 1: ${p1}
+Parent 2: ${p2}
+
+RESULTS:
+${output}
+
+EXPLANATION:
+${ai}
+`;
+
+ const blob = new Blob([content], {type:"text/plain"});
+ const url = URL.createObjectURL(blob);
+
+ const a = document.createElement("a");
+ a.href = url;
+ a.download = "punnett-results.txt";
+ a.click();
+
+ URL.revokeObjectURL(url);
+}
+
+/* 🧾 history */
+function saveHistory(p1,p2){
+ let h = JSON.parse(localStorage.getItem("h")||"[]");
+ h.unshift(`${p1} × ${p2}`);
+ h = h.slice(0,5);
+ localStorage.setItem("h",JSON.stringify(h));
+
+ document.getElementById("history").innerHTML =
+ "<b>History:</b><br>"+h.join("<br>");
+}
+
+window.onload=applyLang;
 
 </script>
 

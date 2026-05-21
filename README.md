@@ -132,3 +132,5 @@ MIT
 - [ShadowDev7](https://github.com/ShadowDev7) -> Made the Python CLI version and Desktop Application 
 
 - [Krikonis11](https://github.com/Krikonis11) -> Made the Website
+
+📍 Students of 4th Middle School Of Heraklion

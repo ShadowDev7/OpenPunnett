@@ -1,8 +1,0 @@
-{
-  "appTitle": "Punnett Square Calculator",
-  "parent1Placeholder": "Parent 1 (e.g. Aa)",
-  "parent2Placeholder": "Parent 2 (e.g. Aa)",
-  "calculateButton": "Calculate",
-  "invalidInputMessage": "Please enter valid genotypes, e.g. Aa",
-  "resultsTitle": "Results"
-}

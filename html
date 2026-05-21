@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <title>Punnett Square Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 30px auto;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid #333;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+    .result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Punnett Square Calculator</h2>
+
+<input id="p1" placeholder="Parent 1 (π.χ. Aa)">
+<input id="p2" placeholder="Parent 2 (π.χ. Aa)">
+<br>
+<button onclick="calculate()">Υπολογισμός</button>
+
+<div id="output"></div>
+
+<script>
+function getGametes(genotype) {
+  return genotype.split("");
+}
+
+function combine(a, b) {
+  return (a + b).split("").sort().join("");
+}
+
+function calculate() {
+  const p1 = document.getElementById("p1").value;
+  const p2 = document.getElementById("p2").value;
+
+  if (!p1 || !p2 || p1.length !== 2 || p2.length !== 2) {
+    alert("Δώσε σωστά γονότυπα π.χ. Aa");
+    return;
+  }
+
+  const g1 = getGametes(p1);
+  const g2 = getGametes(p2);
+
+  let table = "<table><tr><th></th>";
+
+  for (let j = 0; j < g2.length; j++) {
+    table += `<th>${g2[j]}</th>`;
+  }
+  table += "</tr>";
+
+  let counts = {};
+
+  for (let i = 0; i < g1.length; i++) {
+    table += `<tr><th>${g1[i]}</th>`;
+    for (let j = 0; j < g2.length; j++) {
+      let child = combine(g1[i], g2[j]);
+      table += `<td>${child}</td>`;
+
+      counts[child] = (counts[child] || 0) + 1;
+    }
+    table += "</tr>";
+  }
+
+  table += "</table>";
+
+  let result = "<div class='result'><h3>Αποτελέσματα</h3>";
+
+  let total = Object.values(counts).reduce((a,b)=>a+b,0);
+
+  for (let key in counts) {
+    result += `${key}: ${(counts[key]/total*100).toFixed(0)}%<br>`;
+  }
+
+  result += "</div>";
+
+  document.getElementById("output").innerHTML = table + result;
+}
+</script>
+
+</body>
+</html>

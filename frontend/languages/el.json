@@ -1,0 +1,8 @@
+{
+  "appTitle": "Υπολογιστής Τετραγώνου Punnett",
+  "parent1Placeholder": "Γονέας 1 (π.χ. Aa)",
+  "parent2Placeholder": "Γονέας 2 (π.χ. Aa)",
+  "calculateButton": "Υπολογισμός",
+  "invalidInputMessage": "Δώσε σωστά γονότυπα, π.χ. Aa",
+  "resultsTitle": "Αποτελέσματα"
+}

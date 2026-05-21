@@ -129,6 +129,6 @@ MIT
 
 ## Credits
 
-- [ShadowDev7](https://shadowdev7.github.io/punnett-sqaure-calculator) -> Made the Python CLI version and Desktop Application 
+- [ShadowDev7](https://github.com/ShadowDev7) -> Made the Python CLI version and Desktop Application 
 
-- [Krikonis11](https://shadowdev7.github.io/punnett-sqaure-calculator) -> Made the Website
+- [Krikonis11](https://github.com/Krikonis11) -> Made the Website

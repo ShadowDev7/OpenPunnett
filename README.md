@@ -40,8 +40,6 @@ Each parent must be given as a two-letter genotype:
 - `aA`
 - `aa`
 
-(Now this knolwedge comes from what I learned in School so don't except me to be 100% correct. I do not have a PhD)
-
 Example:
 
 ```bash
@@ -115,10 +113,12 @@ Accepted parent values:
 - `a` is treated as the recessive allele
 - `AA` and `Aa` produce the dominant phenotype
 - `aa` produces the recessive phenotype
+- `A` > `a`
 
 ## Notes
 
-This tool is designed for simple one-gene Punnett square exercises and educational use. In addition, this manual applies to the Greek version too
+This tool is designed for simple one-gene Punnett square exercises and educational use. In addition, this manual applies to the Greek version too. Also, my biology knowledge comes from
+school so if there is something inaccurate. Give it a commit (contribute) and I will fix it 
 
 ## License
 

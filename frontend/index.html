@@ -1,108 +1,279 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <title>Punnett Square Calculator</title>
-  <style src="style.css"></style>
-</head>
-<body>
-  
-  <h2>Punnett Square Calculator</h2>
-
-<input id="p1" placeholder="Parent 1 (π.χ. Aa)">
-<input id="p2" placeholder="Parent 2 (π.χ. Aa)">
-<br>
-<button onclick="calculate()">Υπολογισμός</button>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Punnett Pro</title>
 
 <style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1f1c2c, #928dab);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 30px auto;
-      text-align: center;
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-      font-size: 16px;
-    }
-    table {
-      margin: 20px auto;
-      border-collapse: collapse;
-    }
-    td, th {
-      border: 1px solid #333;
-      padding: 10px;
-      width: 50px;
-      height: 50px;
-      text-align: center;
-    }
-    .result {
-      margin-top: 20px;
-    }
+/* CONTAINER */
+.container {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  padding: 25px;
+  border-radius: 25px;
+  width: 92%;
+  max-width: 750px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
 
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
 
+/* INPUTS */
+input {
+  padding: 12px;
+  margin: 6px;
+  border-radius: 12px;
+  border: none;
+  width: 40%;
+  font-size: 16px;
+}
+
+/* BUTTON */
+button {
+  margin-top: 10px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* TABLE */
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+td, th {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 14px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.1);
+}
+
+/* RESULT BOX */
+.result {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 15px;
+}
+
+/* LANGUAGE SWITCH */
+.lang-switch {
+  width: 75px;
+  height: 36px;
+  margin: 20px auto 10px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.thumb {
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+  transform: translateX(0);
+}
+
+/* CHART */
+.bar-container {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.bar {
+  height: 20px;
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
+  border-radius: 10px;
+  margin: 5px 0;
+  transition: 0.5s;
+}
+
+/* HISTORY */
+.history {
+  margin-top: 15px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.7;
+}
 </style>
+</head>
 
+<body>
+
+<div class="container">
+
+<h2>🧬 Punnett Pro</h2>
+
+<input id="p1" placeholder="Parent 1">
+<input id="p2" placeholder="Parent 2">
+<br>
+
+<button onclick="calculate()">Calculate</button>
 
 <div id="output"></div>
 
+<!-- LANG SWITCH -->
+<div class="lang-switch" onclick="toggleLang()">
+  <div class="thumb" id="thumb">🇬🇷</div>
+</div>
+
+<!-- HISTORY -->
+<div class="history" id="history"></div>
+
+<div class="footer">Site Made By Nikolas Krikonis</div>
+
+</div>
+
 <script>
-function getGametes(genotype) {
-  return genotype.split("");
+
+let lang = "el";
+
+const t = {
+ el: {
+  title:"🧬 Υπολογιστής Punnett",
+  error:"Λάθος γονότυπος"
+ },
+ en: {
+  title:"🧬 Punnett Calculator",
+  error:"Invalid genotype"
+ }
+};
+
+function toggleLang(){
+ const thumb = document.getElementById("thumb");
+
+ if(lang==="el"){
+   lang="en";
+   thumb.style.transform="translateX(38px)";
+   thumb.innerText="🇬🇧";
+ } else {
+   lang="el";
+   thumb.style.transform="translateX(0)";
+   thumb.innerText="🇬🇷";
+ }
+
+ document.querySelector("h2").innerText = t[lang].title;
 }
 
-function combine(a, b) {
-  return (a + b).split("").sort().join("");
+function combine(a,b){
+ return (a+b).split("").sort().join("");
 }
 
-function calculate() {
-  const p1 = document.getElementById("p1").value;
-  const p2 = document.getElementById("p2").value;
+function calculate(){
 
-  if (!p1 || !p2 || p1.length !== 2 || p2.length !== 2) {
-    alert("Δώσε σωστά γονότυπα π.χ. Aa");
-    return;
+ const p1=document.getElementById("p1").value;
+ const p2=document.getElementById("p2").value;
+
+ if(!p1||!p2){
+   alert(t[lang].error);
+   return;
+ }
+
+ const g1=[...p1];
+ const g2=[...p2];
+
+ let counts={};
+
+ let html="<table><tr><th></th>";
+
+ for(let j=0;j<g2.length;j++){
+  html+=`<th>${g2[j]}</th>`;
+ }
+ html+="</tr>";
+
+ for(let i=0;i<g1.length;i++){
+  html+=`<tr><th>${g1[i]}</th>`;
+  for(let j=0;j<g2.length;j++){
+    let c=combine(g1[i],g2[j]);
+    html+=`<td>${c}</td>`;
+    counts[c]=(counts[c]||0)+1;
   }
+  html+="</tr>";
+ }
 
-  const g1 = getGametes(p1);
-  const g2 = getGametes(p2);
+ html+="</table>";
 
-  let table = "<table><tr><th></th>";
+ let total=Object.values(counts).reduce((a,b)=>a+b,0);
 
-  for (let j = 0; j < g2.length; j++) {
-    table += `<th>${g2[j]}</th>`;
-  }
-  table += "</tr>";
+ let bars="<div class='bar-container'>";
 
-  let counts = {};
+ for(let k in counts){
+   let percent=(counts[k]/total*100);
+   bars+=`
+   <div>${k} - ${percent.toFixed(0)}%</div>
+   <div class='bar' style='width:${percent*2}px'></div>
+   `;
+ }
 
-  for (let i = 0; i < g1.length; i++) {
-    table += `<tr><th>${g1[i]}</th>`;
-    for (let j = 0; j < g2.length; j++) {
-      let child = combine(g1[i], g2[j]);
-      table += `<td>${child}</td>`;
+ bars+="</div>";
 
-      counts[child] = (counts[child] || 0) + 1;
-    }
-    table += "</tr>";
-  }
+ document.getElementById("output").innerHTML = html + bars;
 
-  table += "</table>";
-
-  let result = "<div class='result'><h3>Αποτελέσματα</h3>";
-
-  let total = Object.values(counts).reduce((a,b)=>a+b,0);
-
-  for (let key in counts) {
-    result += `${key}: ${(counts[key]/total*100).toFixed(0)}%<br>`;
-  }
-
-  result += "</div>";
-
-  document.getElementById("output").innerHTML = table + result;
+ saveHistory(p1,p2);
 }
+
+function saveHistory(p1,p2){
+ let h = JSON.parse(localStorage.getItem("history")||"[]");
+ h.unshift(`${p1} × ${p2}`);
+ h = h.slice(0,5);
+ localStorage.setItem("history",JSON.stringify(h));
+
+ document.getElementById("history").innerHTML =
+ "<b>History:</b><br>"+h.join("<br>");
+}
+
+window.onload=function(){
+ document.querySelector("h2").innerText=t[lang].title;
+
+ let h=JSON.parse(localStorage.getItem("history")||"[]");
+ if(h.length){
+  document.getElementById("history").innerHTML =
+  "<b>History:</b><br>"+h.join("<br>");
+ }
+}
+
 </script>
 
 </body>

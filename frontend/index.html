@@ -9,7 +9,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #1f1c2c, #928dab);
+  background: radial-gradient(circle at top, #999494, #c5c3ce);
   color: white;
   display: flex;
   justify-content: center;
@@ -146,7 +146,7 @@ td, th {
 
 <div id="history"></div>
 
-<div class="footer">Site Made By Nikolas Kirkonis</div>
+<div class="footer">Site Made By Nikolas Krikonis</div>
 
 </div>
 
@@ -183,14 +183,14 @@ const t = {
 };
 
 /* 🔄 normalize Greek letters */
-function normalizeGenotype(g) {
+function normalizeGenotype(g){
   return g
     .replace(/Α/g, "A")
     .replace(/α/g, "a");
 }
 
 /* 🌍 apply language */
-function applyLang() {
+function applyLang(){
  document.getElementById("title").innerText = t[lang].title;
  document.getElementById("p1").placeholder = t[lang].p1;
  document.getElementById("p2").placeholder = t[lang].p2;
@@ -203,29 +203,29 @@ function applyLang() {
 }
 
 /* 🌍 switch */
-function toggleLang() {
+function toggleLang(){
  const thumb = document.getElementById("thumb");
 
  if(lang==="el"){
-   lang = "en" ;
-   thumb.style.transform= "translateX(38px)";
-   thumb.innerText = "🇬🇧";
+   lang="en";
+   thumb.style.transform="translateX(38px)";
+   thumb.innerText="🇬🇧";
  } else {
-   lang = "el";
-   thumb.style.transform = "translateX(0)";
-   thumb.innerText = "🇬🇷";
+   lang="el";
+   thumb.style.transform="translateX(0)";
+   thumb.innerText="🇬🇷";
  }
 
  applyLang();
 }
 
 /* 🧬 combine */
-function combine(a,b) {
+function combine(a,b){
  return (a+b).split("").sort().join("");
 }
 
 /* 🧪 calculate */
-function calculate() {
+function calculate(){
 
  let p1 = document.getElementById("p1").value.trim();
  let p2 = document.getElementById("p2").value.trim();
@@ -236,52 +236,53 @@ function calculate() {
 
  const valid = ["AA","Aa","aA","aa"];
 
- if (!valid.includes(p1) || !valid.includes(p2)) {
+ if(!valid.includes(p1) || !valid.includes(p2)){
    alert(t[lang].validError);
    return;
  }
 
- const g1 = [...p1];
- const g2 = [...p2];
+ const g1=[...p1];
+ const g2=[...p2];
 
- let counts = {};
- let html = "<table><tr><th></th>";
+ let counts={};
+ let html="<table><tr><th></th>";
 
- for (let j=0; j<g2.length; j++){
-  html += `<th>${g2[j]}</th>`;
+ for(let j=0;j<g2.length;j++){
+  html+=`<th>${g2[j]}</th>`;
  }
- html += "</tr>";
+ html+="</tr>";
 
- for (let i = 0; i < g1.length; i++){
-  html += `<tr><th>${g1[i]}</th>`;
-  for (let j = 0; j < g2.length; j++){
-    let c = combine(g1[i], g2[j]);
-    html += `<td>${c}</td>`;
-    counts[c] = (counts[c] || 0) +1;
+ for(let i=0;i<g1.length;i++){
+  html+=`<tr><th>${g1[i]}</th>`;
+  for(let j=0;j<g2.length;j++){
+    let c=combine(g1[i],g2[j]);
+    html+=`<td>${c}</td>`;
+    counts[c]=(counts[c]||0)+1;
   }
-  html += "</tr>";
+  html+="</tr>";
  }
 
- html += "</table>";
+ html+="</table>";
 
- let total = Object.values(counts).reduce((a,b)=>a+b,0);
+ let total=Object.values(counts).reduce((a,b)=>a+b,0);
 
- let bars = "<div class='bar-container'>";
+ let bars="<div class='bar-container'>";
 
- for (let k in counts) {
+ for(let k in counts){
    let p=(counts[k]/total*100);
-   bars += `<div>${k} - ${p.toFixed(0)}%</div>`;
-   bars += `<div class='bar' style='width:${p*3}px'></div>`;
+   bars+=`<div>${k} - ${p.toFixed(0)}%</div>`;
+   bars+=`<div class='bar' style='width:${p*3}px'></div>`;
  }
 
  bars+="</div>";
 
- document.getElementById("output").innerHTML = `<div class='result'><h3>${t[lang].results}</h3></div>` + html + bars;
+ document.getElementById("output").innerHTML =
+ `<div class='result'><h3>${t[lang].results}</h3></div>` + html + bars;
 
  saveHistory(p1,p2);
 }
 
-/* explain */
+/* 🧠 explain */
 function explain(){
 
  let p1 = document.getElementById("p1").value.trim();
@@ -292,16 +293,16 @@ function explain(){
 
  const valid = ["AA","Aa","aA","aa"];
 
- if (!valid.includes(p1) || !valid.includes(p2)) {
+ if(!valid.includes(p1) || !valid.includes(p2)){
    alert(t[lang].validError);
    return;
  }
 
  let meaning = {
-  AA: lang === "el" ? "ομόζυγος κυρίαρχος" : "homozygous dominant",
-  Aa: lang === "el" ? "ετερόζυγος" : "heterozygous",
-  aA: lang === "el" ? "ετερόζυγος" : "heterozygous",
-  aa: lang === "el" ? "ομόζυγος υπολειπόμενος" : "homozygous recessive"
+  AA: lang==="el"?"ομόζυγος κυρίαρχος":"homozygous dominant",
+  Aa: lang==="el"?"ετερόζυγος":"heterozygous",
+  aA: lang==="el"?"ετερόζυγος":"heterozygous",
+  aa: lang==="el"?"ομόζυγος υπολειπόμενος":"homozygous recessive"
  };
 
  document.getElementById("ai").innerHTML =
@@ -313,7 +314,7 @@ function explain(){
 }
 
 /* 📦 export */
-function exportData() { 
+function exportData(){
 
  const p1 = normalizeGenotype(document.getElementById("p1").value);
  const p2 = normalizeGenotype(document.getElementById("p2").value);
@@ -346,16 +347,17 @@ ${ai}
 }
 
 /* 🧾 history */
-function saveHistory(p1,p2) {
- let h = JSON.parse(localStorage.getItem("h") || "[]");
+function saveHistory(p1,p2){
+ let h = JSON.parse(localStorage.getItem("h")||"[]");
  h.unshift(`${p1} × ${p2}`);
  h = h.slice(0,5);
- localStorage.setItem("h", JSON.stringify(h));
+ localStorage.setItem("h",JSON.stringify(h));
 
- document.getElementById("history").innerHTML = "<b>History:</b><br>"+h.join("<br>");
+ document.getElementById("history").innerHTML =
+ "<b>History:</b><br>"+h.join("<br>");
 }
 
-window.onload = applyLang;
+window.onload=applyLang;
 
 </script>
 

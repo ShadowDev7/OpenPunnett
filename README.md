@@ -127,6 +127,8 @@ This tool is designed for simple one-gene Punnett square exercises and education
 
 MIT
 
+📍 4th Middle School Of Heraklion
+
 ## Credits
 
 - [ShadowDev7](https://github.com/ShadowDev7) -> Made the Python CLI version and Desktop Application 

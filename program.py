@@ -1,7 +1,7 @@
 import argparse
 def calculate(parent1: str, parent2: str):
-    gametes1 = list(parent1)
-    gametes2 = list(parent2)
+    gametes1 = parent1
+    gametes2 = parent2
 
     total = 0
     result = []
@@ -12,8 +12,8 @@ def calculate(parent1: str, parent2: str):
 
     for p1 in gametes1:
         for p2 in gametes2:
-            combination = "".join(sorted(p1 + p2, reverse=True))
-
+            combination = "".join(sorted(p1 + p2))
+            
             total += 1
             result.append(combination)
 

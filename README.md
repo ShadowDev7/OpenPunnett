@@ -1,6 +1,6 @@
 # Punnett Square Calculator
 
-A simple Python CLI (or Javascript Website) tool for calculating genotype and phenotype percentages using a Punnett square.
+A simple Python/JavaScript tool for calculating genotype and phenotype percentages using a Punnett square.
 
 ## Features
 
@@ -10,9 +10,9 @@ A simple Python CLI (or Javascript Website) tool for calculating genotype and ph
 - Supports command-line usage
 - Can export results to a file
 
-## Requirements
+## Requirements 
 
-- Python 3.x (2.7 won't work, trust me)
+- Python 3.x (requirement, no less than that)
 OR
 - [A Web browser](https://shadowdev7.github.io/punnett-sqaure-calculator) 
 
@@ -25,17 +25,13 @@ git clone https://github.com/ShadowDev7/punnett-square-calculator.git
 cd punnett-square-calculator
 ```
 
-## Usage
+## Usage (for CLI)
 
 Run the script with two parent genotypes:
 
 ```bash
 python main.py -p1 Aa -p2 Aa
 ```
-
-OR 
-
-If you have opended the website, follow the instructions
 
 ## Format 
 
@@ -131,5 +127,5 @@ MIT
 
 ## Credits
 
-ShadowDev7 - Developer of the python CLI
-Krikonis11 - Developeer of the website
+(ShadowDev7)["https://github.com/ShadowDev7"] - Developer of the python CLI
+(Krikonis11)["https://github.com/Krikonis11"] - Developeer of the website

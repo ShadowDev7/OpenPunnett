@@ -8,7 +8,7 @@ A simple Python/JavaScript tool for calculating genotype and phenotype percentag
 - Calculates phenotype percentages
 - Shows allele combinations
 - Supports command-line usage
-- Can export results to a file
+- Can export results to a file (txt)
 
 ## Requirements 
 
@@ -127,5 +127,5 @@ MIT
 
 ## Credits
 
-(ShadowDev7)["https://github.com/ShadowDev7"] - Developer of the python CLI
-(Krikonis11)["https://github.com/Krikonis11"] - Developeer of the website
+[ShadowDev7]("https://github.com/ShadowDev7") - Developer of the python CLI
+[Krikonis11]("https://github.com/Krikonis11") - Developeer of the website

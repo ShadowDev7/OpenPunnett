@@ -27,7 +27,7 @@ class App(ctk.CTk):
         self.entry2.grid(row=3, 
                          column=0, 
                          padx=20, 
-                         pady=40
+                         pady=10
                     )
         
 

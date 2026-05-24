@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np 
+
 def calculate(parent1: str, parent2: str):
     gametes1 = list(parent1)
     gametes2 = list(parent2)
@@ -40,6 +43,10 @@ def calculate(parent1: str, parent2: str):
         },
     }
 
+
+
+def graphs():
+    pass 
 
 def main():
     pass 

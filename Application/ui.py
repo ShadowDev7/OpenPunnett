@@ -25,13 +25,12 @@ class App(ctk.CTk):
                                     fg_color="white",
                                     hover_color="gray",
                                     corner_radius=20,
-                                    bg_color="white"
                                 )
         
         self.button.grid(row=1, 
                          column=0,
                          pady=20
-                        )
+                    )
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Punnett Pro</title>
+<title>OpenPunnett</title>
 
 <style>
 body {
@@ -154,7 +154,7 @@ td, th {
 
 let lang = "el";
 
-/* 🌍 TEXTS */
+/* TEXTS */
 const t = {
  el: {
   title:"",                                                          
@@ -170,7 +170,7 @@ const t = {
  },
  en: {
   title:"",
-  p1:"Parent 1 (e.g. Aa)",
+  p1:"Parent 1 (e.g. Aa)",  
   p2:"Parent 2 (e.g. Aa)",
   calc:"Calculate",
   explain:"Explain",
@@ -182,14 +182,14 @@ const t = {
  }
 };
 
-/* 🔄 normalize Greek letters */
+/* Normalize Greek letters */
 function normalizeGenotype(g){
   return g
     .replace(/Α/g, "A")
     .replace(/α/g, "a");
 }
 
-/* 🌍 apply language */
+/* apply language */
 function applyLang(){
  document.getElementById("title").innerText = t[lang].title;
  document.getElementById("p1").placeholder = t[lang].p1;
@@ -202,7 +202,7 @@ function applyLang(){
  document.getElementById("ai").innerHTML="";
 }
 
-/* 🌍 switch */
+/* switch */
 function toggleLang(){
  const thumb = document.getElementById("thumb");
 
@@ -219,24 +219,24 @@ function toggleLang(){
  applyLang();
 }
 
-/* 🧬 combine */
+/* combine */
 function combine(a,b){
  return (a+b).split("").sort().join("");
 }
 
-/* 🧪 calculate */
+/* calculate */
 function calculate(){
 
  let p1 = document.getElementById("p1").value.trim();
  let p2 = document.getElementById("p2").value.trim();
 
- /* 🔥 convert Greek → Latin */
+ /* convert Greek → Latin */
  p1 = normalizeGenotype(p1);
  p2 = normalizeGenotype(p2);
 
  const valid = ["AA","Aa","aA","aa"];
 
- if(!valid.includes(p1) || !valid.includes(p2)){
+ if(!valid.includes(p1) || !valid.includes(p2)) {
    alert(t[lang].validError);
    return;
  }
@@ -282,7 +282,7 @@ function calculate(){
  saveHistory(p1,p2);
 }
 
-/* 🧠 explain */
+/* explain */
 function explain(){
 
  let p1 = document.getElementById("p1").value.trim();
@@ -313,8 +313,8 @@ function explain(){
  </div>`;
 }
 
-/* 📦 export */
-function exportData(){
+/* export */
+function exportData() {
 
  const p1 = normalizeGenotype(document.getElementById("p1").value);
  const p2 = normalizeGenotype(document.getElementById("p2").value);
@@ -346,7 +346,7 @@ ${ai}
  URL.revokeObjectURL(url);
 }
 
-/* 🧾 history */
+/* history */
 function saveHistory(p1,p2){
  let h = JSON.parse(localStorage.getItem("h")||"[]");
  h.unshift(`${p1} × ${p2}`);

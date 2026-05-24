@@ -4,16 +4,32 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Punnett Square Calculator")
-        self.geometry("400x300")
+        self.title("OpenPunnett")
+        self.geometry("800x400")
         
         self.grid_columnconfigure(0, weight=1)
-        self.label = ctk.CTkLabel(self, text="Welcome to the Punnett Square Calculator!")
+        # Title
+        self.label = ctk.CTkLabel(self, text="Welcome to the OpenPunnett Calculator!")
         self.label.grid(row=0, 
                         column=0, 
                         padx=20, 
                         pady=20
                         )
+        # Parent1
+        self.entry1 = ctk.CTkEntry(self, placeholder_text="Parent 1 Genotype (e.g. Aa)")
+        self.entry1.grid(row=2, 
+                         column=0, 
+                         padx=20, 
+                         pady=10
+                    )
+        # Parent2
+        self.entry2 = ctk.CTkEntry(self, placeholder_text="Parent 2 Genotype (e.g. Aa)")
+        self.entry2.grid(row=3, 
+                         column=0, 
+                         padx=20, 
+                         pady=40
+                    )
+        
 
         self.button = ctk.CTkButton(self, 
                                     text="Calculate", 
@@ -29,7 +45,7 @@ class App(ctk.CTk):
         
         self.button.grid(row=1, 
                          column=0,
-                         pady=20
+                         pady=50
                     )
 
 

@@ -135,4 +135,4 @@ MIT
 
 - [Krikonis11](https://github.com/Krikonis11) -> Made the Website
 
-📍 Students of 4th Middle School Of Heraklion
+📍 Students of 4th Middle School Of Heraklion (Well we WERE) 

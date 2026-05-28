@@ -16,7 +16,7 @@ A simple Python/JavaScript tool for calculating genotype and phenotype percentag
 
 OR
 
-- A Web browser
+- [A Web browser](https://shadowdev7.github.io/punnett-sqaure-calculator) 
 
 ## Installation (For CLI)
 

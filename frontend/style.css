@@ -1,0 +1,262 @@
+:root {
+  /* Material You Design Tokens */
+  --md-surface: #131316;
+  --md-surface-variant: #22232a;
+  --md-primary: #a8c7fa;
+  --md-on-primary: #062e6f;
+  --md-secondary: #c2e7ff;
+  --md-on-secondary: #001d35;
+  --md-outline: #8e9199;
+  --md-text: #e3e2e6;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #1c1b1f, #0f0e13);
+  color: var(--md-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.github-link {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    z-index: 100;
+}
+
+.github-link:hover {
+    color: var(--md-primary);
+    transform: scale(1.1);
+}
+
+/* Floating Left Side Panel (Pulled out of document flow to stop card pushing) */
+.side-panel {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 240px;
+  z-index: 10;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: var(--md-text);
+}
+
+/* History Card Block */
+#history {
+  display: none; /* Invisible when empty - prevents phantom circle */
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.history-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--md-primary);
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+.history-items {
+  line-height: 1.8;
+}
+
+/* Clear All Button */
+.clear-btn {
+  background: transparent;
+  border: none;
+  color: #ffb4ab; /* Material Red alert accent */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 180, 171, 0.15);
+}
+
+/* Centered Material Workspace Card */
+.container {
+  background: var(--md-surface-variant);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 32px 32px 32px;
+  border-radius: 28px;
+  width: 92%;
+  max-width: 680px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+  margin: auto; /* Dead-center alignment hook */
+}
+
+/* Input Styling */
+input {
+  padding: 16px;
+  margin: 8px;
+  border-radius: 12px;
+  border: 2px solid var(--md-outline);
+  background: transparent;
+  width: 44%;
+  font-size: 16px;
+  color: white;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--md-primary);
+}
+
+/* Layout Button Array Group */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 24px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+#btn1 { background: var(--md-primary); color: var(--md-on-primary); }
+#btn2, #btn3 { background: rgba(255, 255, 255, 0.08); color: var(--md-secondary); border: 1px solid rgba(255,255,255,0.1); }
+
+button:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Material Output Grid Tables */
+table {
+  margin: 24px auto;
+  border-collapse: collapse;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+td, th {
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px;
+  width: 64px;
+  height: 64px;
+  text-align: center;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--md-primary);
+  font-weight: 500;
+}
+
+/* Calculation Dynamic Cards */
+.result {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 16px;
+  border-left: 4px solid var(--md-primary);
+  text-align: left;
+}
+
+.result h3 { margin-top: 0; color: var(--md-primary); }
+
+.bar-container { margin-top: 16px; text-align: left; }
+
+.bar {
+  height: 8px;
+  background: var(--md-primary);
+  border-radius: 4px;
+  margin: 6px 0 16px 0;
+}
+
+/* Language Selection Capsule Switcher */
+.lang-switch {
+  width: 80px;
+  height: 38px;
+  margin: 24px auto 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.thumb {
+  width: 30px;
+  height: 30px;
+  background: var(--md-surface-variant);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Call to Action Footer Link */
+.footer {
+  margin-top: 32px;
+}
+
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--md-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.download-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}

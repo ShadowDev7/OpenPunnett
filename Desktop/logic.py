@@ -1,5 +1,9 @@
+import os
+from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", str(Path(__file__).with_name(".matplotlib_cache")))
+
 import matplotlib.pyplot as plt
-import numpy as np 
 
 def calculate(parent1: str, parent2: str):
     gametes1 = list(parent1)
@@ -45,8 +49,38 @@ def calculate(parent1: str, parent2: str):
 
 
 
-def graphs():
-    pass 
+def graphs(results: dict):
+    genotype = results["genotype"]
+    phenotype = results["phenotype"]
+
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    fig.suptitle("Punnett Square Results")
+
+    axes[0].bar(genotype.keys(), genotype.values(), color=["#4e79a7", "#f28e2b", "#e15759"])
+    axes[0].set_title("Genotype Distribution")
+    axes[0].set_xlabel("Genotype")
+    axes[0].set_ylabel("Percentage")
+    axes[0].set_ylim(0, 100)
+
+    axes[1].bar(phenotype.keys(), phenotype.values(), color=["#59a14f", "#b07aa1"])
+    axes[1].set_title("Phenotype Distribution")
+    axes[1].set_xlabel("Phenotype")
+    axes[1].set_ylabel("Percentage")
+    axes[1].set_ylim(0, 100)
+
+    for axis in axes:
+        for bar in axis.patches:
+            height = bar.get_height()
+            axis.text(
+                bar.get_x() + bar.get_width() / 2,
+                height + 1,
+                f"{height:.1f}%",
+                ha="center",
+                va="bottom",
+            )
+
+    plt.tight_layout()
+    plt.show()
 
 def main():
     pass 

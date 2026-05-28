@@ -51,7 +51,7 @@ class App(ctk.CTk):
                          pady=50
                     )
 
-    def show_results(self):
+    def show_results(self): # Also made with codex 
         parent1 = self.entry1.get().strip()
         parent2 = self.entry2.get().strip()
 

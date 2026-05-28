@@ -49,7 +49,7 @@ def calculate(parent1: str, parent2: str):
 
 
 
-def graphs(results: dict):
+def graphs(results: dict): # Made with Codex
     genotype = results["genotype"]
     phenotype = results["phenotype"]
 

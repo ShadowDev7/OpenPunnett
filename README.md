@@ -1,4 +1,4 @@
-# Punnett Square Calculator
+# OpenPunnett
 
 A simple Python/JavaScript tool for calculating genotype and phenotype percentages using a Punnett square.
 
@@ -16,7 +16,7 @@ A simple Python/JavaScript tool for calculating genotype and phenotype percentag
 
 OR
 
-- [A Web browser](https://shadowdev7.github.io/punnett-sqaure-calculator) 
+- A Web browser 
 
 ## Installation (For CLI)
 

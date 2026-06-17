@@ -7,12 +7,12 @@ def calculate(parent1: str, parent2: str):
     gametes1 = parent1
     gametes2 = parent2
 
-    total = 0
-    result = []
+    total: int = 0
+    result: list[str] = []
 
-    gametes_AA = 0
-    gametes_aa = 0
-    gametes_Aa = 0
+    gametes_AA: int = 0
+    gametes_aa: int = 0
+    gametes_Aa: int = 0
 
     for p1 in gametes1:
         for p2 in gametes2:

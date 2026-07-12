@@ -1,4 +1,4 @@
-# Credit to ShadowDev7 for the original code, which was adapted and expanded upon for this project.
+# Made By ShadowDev7
 # License: MIT License
 
 import argparse

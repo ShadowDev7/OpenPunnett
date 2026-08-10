@@ -2,7 +2,7 @@
 
 A simple CLI tool for calculating genotype and phenotype percentages using a Punnett square.
 
-Website in the future
+Website in the future with more features too 
 
 ## Features
 
@@ -121,8 +121,14 @@ Accepted parent values:
 
 ## Notes
 
-1. This tool is designed for simple one-gene Punnett square exercises and educational use. In addition, this manual applies to the Greek version too. 
+1. This tool is designed for simple one-gene Punnett square exercises and educational use and probably some work. In addition, this manual applies to the Greek version too. 
+
+2. The tool for now is pretty simple. I am working on some more features in the future
+
+3. I am not a biologist (Just saying it)
+
+4. I believe in human creativity. Anyone who decides to commit issues, vibe-coded code (using AI without knowing how it works) or assets with AI/ML is automatically rejected **without any further discussion**
 
 ## License
 
-MIT License
+MIT License 

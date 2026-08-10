@@ -1,6 +1,8 @@
 # OpenPunnett
 
-A simple CLI/Website tool for calculating genotype and phenotype percentages using a Punnett square.
+A simple CLI tool for calculating genotype and phenotype percentages using a Punnett square.
+
+Website in the future
 
 ## Features
 
@@ -13,10 +15,6 @@ A simple CLI/Website tool for calculating genotype and phenotype percentages usi
 ## Requirements 
 
 - Python 3.x (requirement, no less than that)
-
-OR
-
-- A Web browser
 
 ## Installation (For CLI)
 
@@ -123,16 +121,6 @@ Accepted parent values:
 
 1. This tool is designed for simple one-gene Punnett square exercises and educational use. In addition, this manual applies to the Greek version too. 
 
-2. There was going to be a desktop app, but that will become another tool in the future 
-
 ## License
 
-MIT
-
-## Credits
-
-- [ShadowDev7](https://github.com/ShadowDev7) -> Made the Python CLI version  
-
-- [Krikonis11](https://github.com/Krikonis11) -> Made the Website
-
-📍 Students of 4th Middle School Of Heraklion (Well we WERE) 
+MIT License

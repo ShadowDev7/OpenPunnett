@@ -21,9 +21,11 @@ Website in the future
 Clone the repository:
 
 ```bash
-git clone https://github.com/ShadowDev7/punnett-square-calculator.git
-cd punnett-square-calculator
+git clone https://github.com/ShadowDev7/OpenPunnett.git
+cd OpenPunnett 
 ```
+
+Or download the .zip I have no idea
 
 ## Usage (for CLI)
 

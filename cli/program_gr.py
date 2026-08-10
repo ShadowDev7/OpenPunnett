@@ -1,4 +1,4 @@
-# Credit to ShadowDev7 for the 
+# Credit to ShadowDev7 
 
 import argparse
 

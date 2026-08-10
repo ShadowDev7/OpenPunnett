@@ -1,4 +1,4 @@
-# Made By ShadowDev7
+# Created by ShadowDev7
 # License: MIT License
 
 import argparse

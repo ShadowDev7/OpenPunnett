@@ -1,8 +1,6 @@
 # Credit to ShadowDev7 for the 
 
 import argparse
-import matplotlib.pyplot as plt
-import numpy as np 
 
 def calculate(parent1: str, parent2: str):
     gametes1 = list(parent1)

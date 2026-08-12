@@ -1,7 +1,7 @@
 // Created by ShadowDev7
 /* To clairfy, as I am doing this, 
 I don't now a lot about TypeScript, I come from C and Python. 
-Probably will in the future. When I reach theer I will delete this comment. */
+Probably will in the future. When I reach there I will delete this comment. */
 
 // So I searched on Google whats an interface, it's apparently like a struct in C. I guess?
 export interface GenotypeRatio {

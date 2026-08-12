@@ -1,9 +1,9 @@
 // Created by ShadowDev7
-// To clairfy, as I am doing this, I don't know a lot about TypeScript. Probably will in the future
-// When I do I will delete this comment. Thanks
+/* To clairfy, as I am doing this, 
+I don't now a lot about TypeScript, I come from C and Python. 
+Probably will in the future. When I reach theer I will delete this comment. */
 
-
-// So I searched on Google whats an interface, its apparently like a struct in C. I guess?
+// So I searched on Google whats an interface, it's apparently like a struct in C. I guess?
 export interface GenotypeRatio {
   AA: number;
   Aa: number;
@@ -34,7 +34,7 @@ function calculate(parent1: string, parent2: string): GeneticCrossResult {
   let gametes_AA: number = 0;
   let gametes_aa: number = 0;
 
-  // The tool is more for students and simple stuff. Threfore, sicne it's 2 characters, O(n^2) is fine
+  // The tool is more for students and simple stuff. Threfore, since it's 2 characters, O(n^2) is fine
   for (const p1 of gametes1) {
     for (const p2 of gametes2) {
       // Normalizes "aA" to "Aa"

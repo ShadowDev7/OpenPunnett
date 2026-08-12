@@ -121,7 +121,7 @@ Accepted parent values:
 
 ## Notes
 
-1. This tool is designed for simple one-gene Punnett square exercises and educational use and probably some work. In addition, this manual applies to the Greek version too. 
+1. This tool is designed for simple one-gene Punnett square exercises and educational use and probably some work. 
 
 2. The tool for now is pretty simple. I am working on some more features in the future
 

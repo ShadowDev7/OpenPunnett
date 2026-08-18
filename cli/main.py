@@ -1,11 +1,34 @@
-# Created by ShadowDev7
-# License: MIT License
+# License  
+
+""" 
+MIT License
+
+Copyright (c) 2026 ShadowDev7 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 
 import argparse
 
 def calculate(parent1: str, parent2: str):
-    gametes1 = parent1
-    gametes2 = parent2
+    gametes1: str = parent1
+    gametes2: str = parent2
 
     total: int = 0
     result: list[str] = []
@@ -14,9 +37,10 @@ def calculate(parent1: str, parent2: str):
     gametes_aa: int = 0
     gametes_Aa: int = 0
 
+    # Since its mainly two characters, a nested loop is fine
     for p1 in gametes1:
         for p2 in gametes2:
-            combination = "".join(sorted(p1 + p2))
+            combination: str = "".join(sorted(p1 + p2))
             
             total += 1
             result.append(combination)
@@ -28,9 +52,9 @@ def calculate(parent1: str, parent2: str):
             elif combination == "Aa":
                 gametes_Aa += 1
 
-    phenotype_A = gametes_AA + gametes_Aa
-    phenotype_a = gametes_aa
-
+    phenotype_A: int = gametes_AA + gametes_Aa
+    phenotype_a: int = gametes_aa
+    
     return {
         "total": total,
         "combinations": result,
@@ -47,10 +71,10 @@ def calculate(parent1: str, parent2: str):
 
 
 def main():
-    valid_combinations = ["aa", "Aa", "aA", "AA"]
+    valid_combinations: list[str] = ["aa", "Aa", "aA", "AA"]
 
     parser = argparse.ArgumentParser(
-        prog="Punnett Square Calculator",
+        prog="",
         description="Cross allele sequences using a Punnett square",
     )
 
@@ -97,7 +121,7 @@ def main():
 
     results = calculate(args.parent1, args.parent2)
 
-    output_parts = []
+    output_parts: list = []
 
     if args.genotype and not args.phenotype:
         output_parts.append(

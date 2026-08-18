@@ -1,4 +1,5 @@
 // Created by ShadowDev7
+
 /* To clairfy, as I am doing this, 
 I don't now a lot about TypeScript, I come from C and Python. 
 Probably will in the future. When I reach there I will delete this comment. */
@@ -27,14 +28,14 @@ function calculate(parent1: string, parent2: string): GeneticCrossResult {
   const gametes2: string = parent2;
 
   let total: number = 0;
-  // We can use Array<T> but string[] is more recommended apparently?
+  // We can use Array<T> but I will use string[]
   const results: string[] = [];
 
   let gametes_Aa: number = 0;
   let gametes_AA: number = 0;
   let gametes_aa: number = 0;
 
-  // The tool is more for students and simple stuff. Threfore, since it's 2 characters, O(n^2) is fine
+  // The tool is more for students and simple stuff. Threfore, since it's 2 characters, Qudratic O(n^2) time is fine
   for (const p1 of gametes1) {
     for (const p2 of gametes2) {
       // Normalizes "aA" to "Aa"
